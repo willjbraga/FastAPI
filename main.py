@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi import HTTPException
 from fastapi import status
 from typing import List, Optional
+from fastapi import Path
+from fastapi import Query
+from fastapi import Header
 
 from fastapi import Response
 
@@ -28,7 +31,7 @@ async def get_cursos():
 
 # todo input de usuário tipo o curso_id é por natureza uma string que precisa ser convertida em int (curso_id: int) -> type hint
 @app.get('/cursos/{curso_id}')
-async def get_cursos(curso_id: int):
+async def get_cursos(curso_id: int = Path(title="ID do Curso", description="Deve ser entre 1 e 2", gt=0, lt=3)):
     try:
         curso = cursos[curso_id]
         return curso
@@ -67,8 +70,18 @@ async def delete_cursos(curso_id: int):
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     else:
         raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = f"Não existe um curso com id {curso_id}")
-        
 
+
+#Esse exemplo usa 100% query parameters, segue o exemplo de requisição: http://localhost:8000/calculadora?a=10&b=10&c=10         
+@app.get('/calculadora')
+async def calcular(a:int = Query(default=None, gt=5), b:int = Query(default=None, gt=10), c: Optional[int] = None, x_geek: str = Header(default=None)):
+    soma = a + b
+    if c:
+        soma = soma + c
+
+    print(f'X-GEEK: {[x_geek]}')
+
+    return {"resultado": soma}
 
 
 if __name__ == '__main__':
