@@ -1,0 +1,19 @@
+{
+	"info": {
+		"_postman_id": "3bec22b7-7c41-419d-84c4-4b18f0f1f674",
+		"name": "API Cursos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49806809",
+		"_collection_link": "https://willjbraga-2303971.postman.co/workspace/William-Braga-de-Oliveira-Junio~af3a79cd-1863-4948-83f4-905dfaf113ed/collection/49806809-3bec22b7-7c41-419d-84c4-4b18f0f1f674?action=share&source=collection_link&creator=49806809"
+	},
+	"item": [
+		{
+			"name": "GET Cursos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
